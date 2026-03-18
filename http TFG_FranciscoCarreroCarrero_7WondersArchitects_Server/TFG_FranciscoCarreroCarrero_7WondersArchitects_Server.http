@@ -1,0 +1,7 @@
+@TFG_FranciscoCarreroCarrero_7WondersArchitects_Server_HostAddress = http://localhost:5222
+
+### Ping raíz
+GET {{TFG_FranciscoCarreroCarrero_7WondersArchitects_Server_HostAddress}}/
+Accept: text/plain
+
+###
