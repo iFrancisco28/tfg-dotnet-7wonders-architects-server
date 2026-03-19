@@ -40,12 +40,20 @@ namespace TFG_FranciscoCarreroCarrero_7WondersArchitects_Server.Hubs {
                 await Groups.AddToGroupAsync(Context.ConnectionId, code);
 
                 //y se avisa
-                await Clients.Group(code).SendAsync("ReceiveMessage", "Sistema", $"{guestName} se ha unido a la sala");
+                await Clients.Group(code).SendAsync("ReceiveMessage", "Sistema", $"{guestName} esta listo para construir ${guestWonder}");
+                
+                await Clients.OthersInGroup(code).SendAsync("PlayerJoined", guestName, guestWonder);
 
                 return "OK";
             }
 
             return "NOT_FOUND"; //sala no encontrada, el jugador no se une
+        }
+
+        //pasar gameState al otro jugador
+        public async Task SendGameState(string roomCode, string jsonState) {
+            // "OthersInGroup" asegura que el JSON le llega al rival, no a ti mismo
+            await Clients.OthersInGroup(roomCode.ToUpper()).SendAsync("ReceiveGameState", jsonState);
         }
 
         // metodo generico
