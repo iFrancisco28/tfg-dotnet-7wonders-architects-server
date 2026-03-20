@@ -40,7 +40,7 @@ namespace TFG_FranciscoCarreroCarrero_7WondersArchitects_Server.Hubs {
                 await Groups.AddToGroupAsync(Context.ConnectionId, code);
 
                 //y se avisa
-                await Clients.Group(code).SendAsync("ReceiveMessage", "Sistema", $"{guestName} esta listo para construir ${guestWonder}");
+                await Clients.Group(code).SendAsync("ReceiveMessage", "Sistema", $"{guestName} esta listo para construir {guestWonder}");
                 
                 await Clients.OthersInGroup(code).SendAsync("PlayerJoined", guestName, guestWonder);
 
