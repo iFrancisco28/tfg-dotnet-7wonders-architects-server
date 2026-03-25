@@ -57,7 +57,7 @@ namespace TFG_FranciscoCarreroCarrero_7WondersArchitects_Server.Hubs {
         }
 
 
-        //metodo para notificaciones del juego (como la guerra)
+        //metodo que le envia a todos
         public async Task SendGameNotification(string roomCode, string message) {
             await Clients.Group(roomCode.ToUpper()).SendAsync("ReceiveGameNotification", message);
         }
