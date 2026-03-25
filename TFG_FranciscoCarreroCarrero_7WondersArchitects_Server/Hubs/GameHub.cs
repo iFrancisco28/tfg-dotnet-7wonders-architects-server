@@ -52,14 +52,14 @@ namespace TFG_FranciscoCarreroCarrero_7WondersArchitects_Server.Hubs {
 
         //pasar gameState al otro jugador
         public async Task SendGameState(string roomCode, string jsonState) {
-            // "OthersInGroup" asegura que el JSON le llega al rival, no a ti mismo
+            //others in group lo manda a todos los de la sala exepto a el mismo
             await Clients.OthersInGroup(roomCode.ToUpper()).SendAsync("ReceiveGameState", jsonState);
         }
 
-        // metodo generico
-        public async Task SendMessageToRoom(string roomCode, string message) {
-            //clients es todos los miembros de Groups
-            await Clients.Group(roomCode.ToUpper()).SendAsync("ReceiveMessage", message);
+
+        //metodo para notificaciones del juego (como la guerra)
+        public async Task SendGameNotification(string roomCode, string message) {
+            await Clients.Group(roomCode.ToUpper()).SendAsync("ReceiveGameNotification", message);
         }
     }
 }
