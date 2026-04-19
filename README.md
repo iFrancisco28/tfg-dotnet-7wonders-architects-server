@@ -9,7 +9,7 @@ Servidor backend desarrollado en ASP.NET Core 9 para orquestar las conexiones y 
 
 ## Arquitectura y Lógica de Concurrencia
 
-El servidor no calcula las mecánicas físicas del juego (las cuales residen en el cliente de MAUI para minimizar la carga computacional del backend), sino que actúa como un nodo de orquestación y validación transaccional altamente optimizado.
+El servidor no calcula las mecánicas físicas del juego (las cuales residen en el cliente de MAUI para minimizar la carga computacional del backend), sino que actúa como un nodo de orquestación y validación transaccional optimizado.
 
 ### 1. Gestión de Memoria Segura (Thread-Safety)
 En una API estándar de ASP.NET, múltiples peticiones HTTP o de WebSockets pueden intentar leer o escribir el estado simultáneamente desde hilos distintos. Para mitigar colisiones y corrupciones en memoria (*Race Conditions*), el estado global de las partidas se almacena en un diccionario concurrente:
